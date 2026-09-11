@@ -4,7 +4,7 @@ Web app to quote and confirm BRL purchases of EUR, ARS, COP, MXN, and ZAR using 
 
 ## Layout
 
-- `api/` — planned HTTP API.
+- `api/` — Express + TypeScript.
 - `web/` — planned Vite + React client.
 
 ## Prerequisites
@@ -13,3 +13,17 @@ Web app to quote and confirm BRL purchases of EUR, ARS, COP, MXN, and ZAR using 
 - npm
 
 Clone this repository, then follow the blocks below.
+
+## Run
+
+```bash
+# API
+cd api
+npm install
+cp .env.example .env
+npm run dev
+
+API `npm run dev` uses nodemon and restarts when files under `api/src` change.
+```
+
+API health: `http://localhost:3001/health`.
