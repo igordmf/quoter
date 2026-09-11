@@ -1,0 +1,22 @@
+[
+  {
+    "code": "EUR",
+    "currencyName": "euro"
+  },
+  {
+    "code": "ARS",
+    "currencyName": "argentine peso"
+  },
+  {
+    "code": "COP",
+    "currencyName": "colombian peso"
+  },
+  {
+    "code": "MXN",
+    "currencyName": "mexican peso"
+  },
+  {
+    "code": "ZAR",
+    "currencyName": "south african rand"
+  }
+]
