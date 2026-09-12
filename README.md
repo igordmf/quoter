@@ -4,7 +4,7 @@ Web app to quote and confirm BRL purchases of EUR, ARS, COP, MXN, and ZAR using 
 
 ## Layout
 
-- `api/` — Express + TypeScript + Prisma (SQLite).
+- `api/` — Express + TypeScript + Prisma (SQLite). Login, currencies, confirmed history.
 - `web/` — planned Vite + React client.
 
 ## Prerequisites
@@ -37,3 +37,7 @@ Spreads:
 | alice    | 0%     |
 | bob      | 0.6%   |
 | carol    | 1%     |
+
+## Quote validity
+
+A quote is valid for **10 seconds** and can be confirmed **once**. Confirming after expiry shows a warning and is not saved.
