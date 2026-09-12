@@ -8,14 +8,17 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "format": "prettier --write .",
+    "test": "vitest run",
     "preview": "vite preview"
   },
   "dependencies": {
     "@tabler/icons-react": "^3.46.0",
     "@tanstack/react-query": "^5.102.8",
+    "decimal.js": "^10.6.0",
     "lucide-react": "^1.45.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "uuid": "^14.0.2",
     "react-router-dom": "^7.18.3"
   },
   "devDependencies": {
@@ -32,6 +35,7 @@
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.70.0",
-    "vite": "^8.3.0"
+    "vite": "^8.3.0",
+    "vitest": "^5.0.0"
   }
 }

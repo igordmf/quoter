@@ -5,7 +5,7 @@ Web app to quote and confirm BRL purchases of EUR, ARS, COP, MXN, and ZAR using 
 ## Layout
 
 - `api/` — Express + TypeScript + Prisma (SQLite). Login, currencies, confirmed history.
-- `web/` — Vite + React.
+- `web/` — Vite + React. Quotes (Binance REST + OKX WebSocket in live mode).
 
 ## Prerequisites
 
@@ -43,6 +43,8 @@ Spreads:
 | alice    | 0%     |
 | bob      | 0.6%   |
 | carol    | 1%     |
+
+Live USDT/BRL and destination prices refresh while you stay on `/quote` (Binance REST poll plus OKX WebSocket). Create quote reads the last in-memory tickers.
 
 ## Quote validity
 
