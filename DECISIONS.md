@@ -70,6 +70,7 @@ Format: context → options → choice → why. Rejected options stay listed so 
 | `zod`                           | Request/env validation                   | `yup` (heavier, same job) |
 | `jsonwebtoken`                  | Signed login token                       | `express-session`         |
 | `uuid`                          | Quote / row ids                          | DB autoincrement only     |
+| `date-fns`                      | Display timestamps                       | `luxon`, `moment`         |
 | `@tanstack/react-query`         | HTTP cache for API                       | ad-hoc `useEffect`        |
 | `@tabler/icons-react`           | Fiat currency glyphs                     | extra icon font           |
 | `lucide-react`                  | Shell icons (nav, user, logout)          | Tabler for everything     |
@@ -94,3 +95,15 @@ Format: context → options → choice → why. Rejected options stay listed so 
 - **Chosen:** `USDTBRL`, `USDTARS`, `USDTCOP`, `USDTMXN`, `USDTZAR` (USDT as base). EUR uses `EURUSDT` (inverted): USDT needed = dest × ask.
 - **Rejected:** pretending `USDTEUR` exists; skipping EUR.
 - **Why:** live Binance `exchangeInfo` has no `USDTEUR`. Spec is USDT/dest; EUR is listed the other way, so we invert instead of dropping the currency.
+
+## Tabler rand icon
+
+- **Chosen:** `IconLetterR` for ZAR; `IconCurrencyDollar` for ARS/COP/MXN; euro for EUR.
+- **Rejected:** peso “P” glyph; generic `IconCurrency` for ZAR.
+- **Why:** Tabler has no rand glyph. Pesos use the dollar icon; ZAR uses R.
+
+## Last destination currency
+
+- **Chosen:** persist `quoter.destCurrency` in `localStorage`; default is index 0 of `DEST_CURRENCIES` (`EUR`). Currency list order matches the seed (not alphabetical).
+- **Rejected:** always default to MXN; sort currencies by code (ARS first).
+- **Why:** returning to the quote page should restore the last destination; array position 0 is the documented default.
