@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { ApiError } from '../../api/errors.ts';
 import { useAuth } from '../../auth/AuthContext.tsx';
 import { Notice } from '../../components/Notice.tsx';
+import { isSimulator } from '../../mode.ts';
 
 export function LoginPage() {
   const { login } = useAuth();
@@ -29,6 +30,11 @@ export function LoginPage() {
         className="w-full max-w-sm rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
       >
         <h1 className="text-xl font-semibold text-slate-900">Quoter</h1>
+        {isSimulator() ? (
+          <p className="mt-2 rounded bg-amber-100 px-2 py-1 text-xs font-semibold text-amber-950">
+            Simulator mode — any username works
+          </p>
+        ) : null}
         <label className="mt-6 block text-sm font-medium text-slate-700" htmlFor="username">
           Username
         </label>

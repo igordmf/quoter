@@ -1,0 +1,13 @@
+{
+  "binance": {
+    "USDTBRL": { "bid": "4.99", "ask": "5.00" },
+    "USDTARS": { "bid": "1400.00", "ask": "1402.00" },
+    "USDTCOP": { "bid": "3900.00", "ask": "3905.00" },
+    "USDTMXN": { "bid": "16.00", "ask": "16.02" },
+    "USDTZAR": { "bid": "18.10", "ask": "18.15" },
+    "EURUSDT": { "bid": "1.0800", "ask": "1.0810" }
+  },
+  "okx": {
+    "USDT-BRL": { "bid": "4.98", "ask": "5.02" }
+  }
+}

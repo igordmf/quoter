@@ -1,20 +1,17 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useMemo, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { apiFetch } from '../../api/client.ts';
 import { ApiError } from '../../api/errors.ts';
 import { useAuth } from '../../auth/AuthContext.tsx';
 import { Notice } from '../../components/Notice.tsx';
+import { confirmExchange, listCurrencies } from '../../data/backend.ts';
 import { useDestCurrency } from '../../hooks/useDestCurrency.ts';
 import { useQuoteCountdown } from '../../hooks/useQuoteCountdown.ts';
-import { API_PATHS } from '../../lib/apiPaths.ts';
 import { DEST_CURRENCIES, QUOTE_TTL_MS } from '../../lib/currencies.ts';
 import { QuoteError, useMarket } from '../../market/MarketContext.tsx';
 import { PendingQuoteCard } from './PendingQuoteCard.tsx';
 import { QuoteFields } from './QuoteFields.tsx';
 import type { PendingQuote } from './pendingQuote.ts';
-
-type CurrencyRow = { code: (typeof DEST_CURRENCIES)[number]; currencyName: string };
 
 export function QuoteForm() {
   const { user } = useAuth();
@@ -30,8 +27,7 @@ export function QuoteForm() {
 
   const currencies = useQuery({
     queryKey: ['currencies'],
-    queryFn: () =>
-      apiFetch<{ currencies: CurrencyRow[] }>(API_PATHS.currencies).then((data) => data.currencies),
+    queryFn: listCurrencies,
   });
 
   const remainingMs = pending ? Math.max(0, pending.expiresAt - now) : 0;
@@ -39,16 +35,13 @@ export function QuoteForm() {
 
   const confirmMutation = useMutation({
     mutationFn: (quote: PendingQuote) =>
-      apiFetch(API_PATHS.exchanges, {
-        method: 'POST',
-        body: JSON.stringify({
-          clientQuoteId: quote.clientQuoteId,
-          destinationCurrencyCode: quote.dest,
-          quantity: quote.quantity,
-          unitPriceBrl: quote.unitPriceBrl,
-          totalPriceBrl: quote.totalPriceBrl,
-          quotedAt: quote.quotedAt,
-        }),
+      confirmExchange(user!.name, {
+        clientQuoteId: quote.clientQuoteId,
+        destinationCurrencyCode: quote.dest,
+        quantity: quote.quantity,
+        unitPriceBrl: quote.unitPriceBrl,
+        totalPriceBrl: quote.totalPriceBrl,
+        quotedAt: quote.quotedAt,
       }),
     onSuccess: async () => {
       setMessage({ kind: 'success', text: 'Quote confirmed and saved to your history.' });

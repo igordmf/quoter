@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
-import { AUTH_UNAUTHORIZED_EVENT, apiFetch } from '../api/client.ts';
+import { AUTH_UNAUTHORIZED_EVENT } from '../api/client.ts';
 import { clearSession, persistSession, readStoredUser, type SessionUser } from '../api/session.ts';
-import { API_PATHS } from '../lib/apiPaths.ts';
+import { loginRequest } from '../data/backend.ts';
 
 type AuthContextValue = {
   user: SessionUser | null;
@@ -26,10 +26,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     () => ({
       user,
       async login(username: string) {
-        const result = await apiFetch<{ token: string; user: SessionUser }>(API_PATHS.login, {
-          method: 'POST',
-          body: JSON.stringify({ username }),
-        });
+        const result = await loginRequest(username);
         persistSession(result.token, result.user);
         setUser(result.user);
       },

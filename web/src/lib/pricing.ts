@@ -33,12 +33,12 @@ export type QuoteResult = {
 };
 
 export class QuoteError extends Error {
-  constructor(
-    public readonly code: 'binance_unavailable' | 'invalid_quantity' | 'invalid_book',
-    message: string,
-  ) {
+  readonly code: 'binance_unavailable' | 'invalid_quantity' | 'invalid_book';
+
+  constructor(code: 'binance_unavailable' | 'invalid_quantity' | 'invalid_book', message: string) {
     super(message);
     this.name = 'QuoteError';
+    this.code = code;
   }
 }
 

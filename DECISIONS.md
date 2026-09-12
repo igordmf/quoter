@@ -8,6 +8,12 @@ Format: context → options → choice → why. Rejected options stay listed so 
 - **Rejected:** npm workspaces / monorepo tooling — extra ceremony for two independent packages.
 - **Why:** matches the spec; each app has its own scripts.
 
+## Simulator vs live
+
+- **Chosen:** `VITE_SIMULATOR=true` in `web/.env`. Simulator is frontend-only (JSON prices + `localStorage`). Live uses the API for login/history and the browser for exchange prices.
+- **Rejected:** UI toggle + `localStorage` for mode; backend `SIMULATOR` env that still requires the API; global server flag for all users.
+- **Why:** requested explicitly so the UI can run without Node API or exchange network.
+
 ## Where quotes are priced (live)
 
 - **Chosen:** web client fetches Binance REST and holds OKX last price from WebSocket (REST poll if the socket dies). API stores only confirmed exchanges.

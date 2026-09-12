@@ -1,28 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
-import { apiFetch } from '../../api/client.ts';
 import { ApiError } from '../../api/errors.ts';
+import { useAuth } from '../../auth/AuthContext.tsx';
 import { Notice } from '../../components/Notice.tsx';
-import { API_PATHS } from '../../lib/apiPaths.ts';
-import type { DestCurrency } from '../../lib/currencies.ts';
+import { listExchanges } from '../../data/backend.ts';
 import { HistoryTable } from './HistoryTable.tsx';
 
-type ExchangeRow = {
-  id: string;
-  destinationCurrencyCode: DestCurrency;
-  currencyName: string;
-  quantity: string;
-  unitPriceBrl: string;
-  totalPriceBrl: string;
-  datetime: string;
-};
-
 export function HistoryPage() {
+  const { user } = useAuth();
   const history = useQuery({
-    queryKey: ['exchanges'],
-    queryFn: async () => {
-      const data = await apiFetch<{ exchanges: ExchangeRow[] }>(API_PATHS.exchanges);
-      return data.exchanges;
-    },
+    queryKey: ['exchanges', user?.name],
+    queryFn: () => listExchanges(user!.name),
+    enabled: Boolean(user),
   });
 
   const rows = history.data ?? [];

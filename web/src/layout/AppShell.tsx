@@ -3,6 +3,7 @@ import { History, LogOut, Repeat, UserRound } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { useAuth } from '../auth/AuthContext.tsx';
 import { ROUTES } from '../lib/routes.ts';
+import { isSimulator } from '../mode.ts';
 import { RailNavLink } from './RailNavLink.tsx';
 import { shellTheme } from './shellTheme.ts';
 
@@ -17,10 +18,16 @@ type Props = {
 
 export function AppShell({ children }: Props) {
   const { user, logout } = useAuth();
-  const theme = shellTheme(false);
+  const simulated = isSimulator();
+  const theme = shellTheme(simulated);
 
   return (
     <div className={theme.page}>
+      {simulated ? (
+        <div className="absolute left-16 right-0 top-0 z-10 bg-amber-500 px-4 py-1 text-center text-xs font-semibold text-amber-950">
+          Simulator mode — JSON prices, no API, history in this browser
+        </div>
+      ) : null}
       <aside className={theme.aside}>
         <div className={theme.logo} title="Quoter">
           <IconCurrencyDollar className="h-6 w-6" />

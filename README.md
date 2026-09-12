@@ -46,6 +46,34 @@ Spreads:
 
 Live USDT/BRL and destination prices refresh while you stay on `/quote` (Binance REST poll plus OKX WebSocket). Create quote reads the last in-memory tickers.
 
+## Simulator mode (frontend only)
+
+No API and no network. Prices come from `web/src/simulator/prices.json`. Login, quotes, expiry, confirmation, and history use `localStorage`.
+
+1. In `web/`:
+
+   ```bash
+   cd web
+   npm install
+   cp .env.example .env
+   ```
+
+2. In `web/.env` set:
+
+   ```
+   VITE_SIMULATOR=true
+   ```
+
+3. Start only the web app:
+
+   ```bash
+   npm run dev
+   ```
+
+Any username is accepted. `alice` / `bob` / `carol` keep the same spreads as live; other names use 0%.
+
+A banner and amber theme mark simulator vs live. There is no in-app toggle — change `.env` and restart Vite.
+
 ## Quote validity
 
 A quote is valid for **10 seconds** and can be confirmed **once**. Confirming after expiry shows a warning and is not saved.
