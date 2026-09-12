@@ -34,7 +34,7 @@ cp .env.example .env
 npm run dev
 ```
 
-Open the Vite URL (default `http://localhost:5173`).
+Open the Vite URL (default `http://localhost:5173`). Unauthenticated visits go to `/login`. After login the app is `/quote`; confirmed quotes are `/history`. Log in as `alice`, `bob`, or `carol` (no password).
 
 Spreads:
 

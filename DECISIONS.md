@@ -45,7 +45,16 @@ Format: context → options → choice → why. Rejected options stay listed so 
 | `zod`                           | Request/env validation                   | `yup` (heavier, same job) |
 | `jsonwebtoken`                  | Signed login token                       | `express-session`         |
 | `@tanstack/react-query`         | HTTP cache for API                       | ad-hoc `useEffect`        |
+| `@tabler/icons-react`           | Fiat currency glyphs                     | extra icon font           |
+| `lucide-react`                  | Shell icons (nav, user, logout)          | Tabler for everything     |
+| `react-router-dom`              | `/login` `/quote` `/history` routes      | hand-rolled History API   |
 | Prisma 6 + SQLite               | Persistence as specified                 | raw `better-sqlite3`; Prisma 7 |
+
+## Web routing
+
+- **Chosen:** `react-router-dom` for `/login`, `/quote`, and `/history`, with a `RequireAuth` layout around `AppShell`.
+- **Rejected:** hand-rolled History API + `useSyncExternalStore` in `App.tsx` — it mixed auth redirects with page switching and flashed `/history` until we special-cased it.
+- **Why:** route components, `NavLink`, and nested layouts are the usual React pattern; Vite still serves `index.html` for those paths in dev.
 
 ## Web tooling
 
