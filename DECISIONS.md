@@ -8,6 +8,12 @@ Format: context → options → choice → why. Rejected options stay listed so 
 - **Rejected:** npm workspaces / monorepo tooling — extra ceremony for two independent packages.
 - **Why:** matches the spec; each app has its own scripts.
 
+## Binance CORS
+
+- **Chosen:** Vite `server.proxy` (`/binance` → `https://api.binance.com`, `/okx` → `https://www.okx.com`) so the browser stays same-origin.
+- **Rejected:** raw `fetch('https://api.binance.com/...')` (often blocked by CORS); always-on API reverse proxy (would contradict “request from web client”).
+- **Why:** still a client-initiated quote path without a custom backend market service.
+
 ## Auth
 
 - **Chosen:** username-only `POST /login` returning a JWT; no passwords, signup, or recovery.
@@ -38,4 +44,11 @@ Format: context → options → choice → why. Rejected options stay listed so 
 | ------------------------------- | ---------------------------------------- | ------------------------- |
 | `zod`                           | Request/env validation                   | `yup` (heavier, same job) |
 | `jsonwebtoken`                  | Signed login token                       | `express-session`         |
+| `@tanstack/react-query`         | HTTP cache for API                       | ad-hoc `useEffect`        |
 | Prisma 6 + SQLite               | Persistence as specified                 | raw `better-sqlite3`; Prisma 7 |
+
+## Web tooling
+
+- **Chosen:** Vite React TypeScript template, then ESLint + Prettier (same style as the API) and Tailwind v4 via `@tailwindcss/vite`.
+- **Rejected:** keeping the template’s oxlint-only setup — the spec asked for ESLint and Prettier on both apps.
+- **Why:** one lint/format story across `api` and `web`.

@@ -5,7 +5,7 @@ Web app to quote and confirm BRL purchases of EUR, ARS, COP, MXN, and ZAR using 
 ## Layout
 
 - `api/` — Express + TypeScript + Prisma (SQLite). Login, currencies, confirmed history.
-- `web/` — planned Vite + React client.
+- `web/` — Vite + React.
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ Web app to quote and confirm BRL purchases of EUR, ARS, COP, MXN, and ZAR using 
 
 Clone this repository, then follow the blocks below.
 
-## Run
+## Live mode (API + web)
 
 ```bash
 # API
@@ -26,9 +26,15 @@ npx prisma db seed
 npm run dev
 
 API `npm run dev` uses nodemon and restarts when files under `api/src` change.
+
+# Web (another terminal)
+cd web
+npm install
+cp .env.example .env
+npm run dev
 ```
 
-API health: `http://localhost:3001/health`.
+Open the Vite URL (default `http://localhost:5173`).
 
 Spreads:
 
