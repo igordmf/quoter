@@ -24,9 +24,11 @@ cp .env.example .env
 npx prisma migrate dev
 npx prisma db seed
 npm run dev
+```
 
-API `npm run dev` uses nodemon and restarts when files under `api/src` change.
+API `npm run dev` uses nodemon and restarts when files under `api/src` change. `npm test` runs HTTP checks against a throwaway SQLite database (not `dev.db`).
 
+```bash
 # Web (another terminal)
 cd web
 npm install
@@ -72,7 +74,14 @@ No API and no network. Prices come from `web/src/simulator/prices.json`. Login, 
 
 Any username is accepted. `alice` / `bob` / `carol` keep the same spreads as live; other names use 0%.
 
-A banner and amber theme mark simulator vs live. There is no in-app toggle — change `.env` and restart Vite.
+A banner and amber theme mark simulator vs live. There is no in-app toggle for simulator vs live — change `.env` and restart Vite.
+
+## Tests
+
+```bash
+cd api && npm install && npm test   # HTTP against a temp SQLite DB (not dev.db)
+cd web && npm install && npm test   # pricing fixture (R$ 31.44)
+```
 
 ## Quote validity
 

@@ -81,7 +81,8 @@ Format: context → options → choice → why. Rejected options stay listed so 
 | `@tabler/icons-react`           | Fiat currency glyphs                     | extra icon font           |
 | `lucide-react`                  | Shell icons (nav, user, logout)          | Tabler for everything     |
 | `react-router-dom`              | `/login` `/quote` `/history` routes      | hand-rolled History API   |
-| `vitest`                        | Lock the R$ 31.44 pricing fixture        | ad-hoc console asserts    |
+| `vitest`                        | Pricing fixture and API HTTP tests       | ad-hoc console asserts    |
+| `supertest`                     | HTTP against Express without a port      | listen + fetch            |
 | Prisma 6 + SQLite               | Persistence as specified                 | raw `better-sqlite3`; Prisma 7 |
 
 ## Web routing
@@ -107,6 +108,12 @@ Format: context → options → choice → why. Rejected options stay listed so 
 - **Chosen:** `IconLetterR` for ZAR; `IconCurrencyDollar` for ARS/COP/MXN; euro for EUR.
 - **Rejected:** peso “P” glyph; generic `IconCurrency` for ZAR.
 - **Why:** Tabler has no rand glyph. Pesos use the dollar icon; ZAR uses R.
+
+## API HTTP tests
+
+- **Chosen:** `vitest` + `supertest` against `createApp()`, with `JWT_SECRET` and a temp SQLite file, `prisma migrate deploy`, and the existing seed. Do not use `dev.db`.
+- **Rejected:** listen on a real port and `fetch`; hit the developer database; Prisma-only unit tests without HTTP.
+- **Why:** login (`unknown_user`), JWT, 10s TTL, and unique `clientQuoteId` are easy to regress and are the API’s real contracts.
 
 ## Last destination currency
 
