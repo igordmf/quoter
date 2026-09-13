@@ -118,7 +118,7 @@ export function QuoteForm() {
   return (
     <section className="mx-auto max-w-xl">
       <h1 className="text-2xl font-semibold">Quote</h1>
-      <p className="mt-1 text-sm text-slate-500">
+      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
         Spread: <span className="font-semibold">{(Number(user?.spread) * 100).toFixed(1)}%</span>
       </p>
 

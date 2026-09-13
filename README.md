@@ -38,6 +38,8 @@ npm run dev
 
 Open the Vite URL (default `http://localhost:5173`). Unauthenticated visits go to `/login`. After login the app is `/quote`; confirmed quotes are `/history`. Log in as `alice`, `bob`, or `carol` (no password).
 
+Moon/sun on login and in the sidebar switches light and dark. The choice is stored in `localStorage` (`quoter.theme`, default light) and is shared by live and simulator. Simulator dark is amber-tinted, not the live slate palette.
+
 Spreads:
 
 | username | spread |
@@ -74,7 +76,7 @@ No API and no network. Prices come from `web/src/simulator/prices.json`. Login, 
 
 Any username is accepted. `alice` / `bob` / `carol` keep the same spreads as live; other names use 0%.
 
-A banner and amber theme mark simulator vs live. There is no in-app toggle for simulator vs live — change `.env` and restart Vite.
+A banner and amber theme mark simulator vs live (dark amber when dark mode is on). There is no in-app toggle for simulator vs live — change `.env` and restart Vite.
 
 ## Tests
 

@@ -23,17 +23,17 @@ export function QuoteFields({
   onCreate,
 }: Props) {
   return (
-    <div className="mt-6 space-y-4 rounded-xl border border-slate-200 bg-white p-5">
+    <div className="mt-6 space-y-4 rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-900">
       <label className="block text-sm font-medium" htmlFor="dest">
         Destination currency
       </label>
       <div className="flex items-center gap-2">
-        <CurrencyIcon code={dest} className="h-6 w-6 text-emerald-700" />
+        <CurrencyIcon code={dest} className="h-6 w-6 text-emerald-700 dark:text-emerald-400" />
         <select
           id="dest"
           value={dest}
           onChange={(event) => onDestChange(event.target.value as DestCurrency)}
-          className="w-full rounded-lg border border-slate-300 px-3 py-2"
+          className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 dark:border-slate-600 dark:bg-slate-950 dark:text-slate-100"
         >
           {options.map((row) => (
             <option key={row.code} value={row.code}>
@@ -53,7 +53,7 @@ export function QuoteFields({
         step="any"
         value={quantity}
         onChange={(event) => onQuantityChange(event.target.value)}
-        className="w-full rounded-lg border border-slate-300 px-3 py-2"
+        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 dark:border-slate-600 dark:bg-slate-950 dark:text-slate-100"
       />
 
       <button

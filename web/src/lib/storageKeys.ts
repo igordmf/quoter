@@ -3,5 +3,6 @@ export const STORAGE_KEYS = {
   user: 'quoter.user',
   destCurrency: 'quoter.destCurrency',
   historyPrefix: 'quoter.history.',
+  theme: 'quoter.theme',
 } as const;
 

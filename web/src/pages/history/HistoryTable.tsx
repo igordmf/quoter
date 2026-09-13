@@ -14,9 +14,9 @@ export type HistoryRow = {
 
 export function HistoryTable({ rows }: { rows: HistoryRow[] }) {
   return (
-    <div className="mt-6 overflow-x-auto rounded-xl border border-slate-200 bg-white">
+    <div className="mt-6 overflow-x-auto rounded-xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
       <table className="w-full text-left text-sm">
-        <thead className="border-b border-slate-200 bg-slate-50 text-slate-600">
+        <thead className="border-b border-slate-200 bg-slate-50 text-slate-600 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300">
           <tr>
             <th className="px-4 py-3 font-medium">Currency</th>
             <th className="px-4 py-3 font-medium">Quantity</th>
@@ -27,12 +27,12 @@ export function HistoryTable({ rows }: { rows: HistoryRow[] }) {
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row.id} className="border-b border-slate-100 last:border-0">
+            <tr key={row.id} className="border-b border-slate-100 last:border-0 dark:border-slate-800">
               <td className="px-4 py-3">
                 <span className="inline-flex items-center gap-2">
                   <CurrencyIcon
                     code={row.destinationCurrencyCode}
-                    className="h-4 w-4 text-emerald-700"
+                    className="h-4 w-4 text-emerald-700 dark:text-emerald-400"
                   />
                   {row.destinationCurrencyCode} · {row.currencyName}
                 </span>

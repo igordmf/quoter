@@ -115,6 +115,12 @@ Format: context → options → choice → why. Rejected options stay listed so 
 - **Rejected:** listen on a real port and `fetch`; hit the developer database; Prisma-only unit tests without HTTP.
 - **Why:** login (`unknown_user`), JWT, 10s TTL, and unique `clientQuoteId` are easy to regress and are the API’s real contracts.
 
+## Color theme
+
+- **Chosen:** manual moon/sun toggle; persist `quoter.theme` (`light` | `dark`); default light; Tailwind `dark` via `html.dark` (not `prefers-color-scheme`). Live and simulator share the same key; simulator dark is amber.
+- **Rejected:** follow the OS automatically; separate live/simulator keys; dark mode only after login / only in live.
+- **Why:** login sits outside the shell, so it needs the same control; one stored preference should survive switching `VITE_SIMULATOR`.
+
 ## Last destination currency
 
 - **Chosen:** persist `quoter.destCurrency` in `localStorage`; default is index 0 of `DEST_CURRENCIES` (`EUR`). Currency list order matches the seed (not alphabetical).
